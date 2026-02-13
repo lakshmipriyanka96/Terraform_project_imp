@@ -42,7 +42,7 @@ pipeline {
             steps {
                 dir("${params.COMPONENT}") {
                     sh 'terraform init'
-                    sh "terraform plan -var-file=env/${params.ENVIRONMENT}.tfvars -out=tfplan"
+                    
                 }
             }
         }
@@ -58,7 +58,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 dir("${params.COMPONENT}") {
-                    sh "terraform plan -var-file=env/${params.ENVIRONMENT}.tfvars"
+              sh "terraform plan -var-file=env/${params.ENVIRONMENT}.tfvars -out=tfplan"
                 }
             }
         }
