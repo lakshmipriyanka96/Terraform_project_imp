@@ -41,11 +41,20 @@ pipeline {
         stage('Terraform Init') {
     steps {
         dir("${params.COMPONENT}") {
-            sh "rm -rf .terraform"
-            sh "terraform init -reconfigure -input=false"
+            sh """
+            terraform init \
+              -backend-config="bucket=eisai12" \
+              -backend-config="key=00-vpc/${params.ENVIRONMENT}/terraform.tfstate" \
+              -backend-config="region=us-east-1" \
+              -backend-config="dynamodb_table=terraform-lock" \
+              -backend-config="encrypt=true" \
+              -reconfigure \
+              -input=false
+            """
         }
     }
 }
+
 
         stage('Terraform Validate') {
             steps {
