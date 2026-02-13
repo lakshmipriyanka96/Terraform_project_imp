@@ -39,13 +39,13 @@ pipeline {
         }
 
         stage('Terraform Init') {
-            steps {
-                dir("${params.COMPONENT}") {
-                    sh 'terraform init'
-                    
-                }
-            }
+    steps {
+        dir("${params.COMPONENT}") {
+            sh "rm -rf .terraform"
+            sh "terraform init -reconfigure -input=false"
         }
+    }
+}
 
         stage('Terraform Validate') {
             steps {
