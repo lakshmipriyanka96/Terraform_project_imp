@@ -42,6 +42,7 @@ pipeline {
             steps {
                 dir("${params.COMPONENT}") {
                     sh 'terraform init'
+                    sh "terraform plan -var-file=env/${params.ENVIRONMENT}.tfvars -out=tfplan"
                 }
             }
         }
