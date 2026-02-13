@@ -23,7 +23,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/lakshmipriyanka96/YOUR_REPO.git'
+                    url: 'https://github.com/lakshmipriyanka96/Terraform_project_imp.git'
             }
         }
 
