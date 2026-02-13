@@ -1,0 +1,2 @@
+project     = "eisai"
+environment = "prod"
